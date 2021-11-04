@@ -11,7 +11,9 @@ spring:
     stream:
       function:
         definition: fizzBuzzProducer;fizzBuzzProcessor;fizzBuzzConsumer
-
+        bindings:
+          toUpperCase|wrapInQuotes-in-0: quotedUpperCaseInput
+#          toUpperCase|wrapInQuotes-out-0: quotedUpperCaseOutput
       bindings:
         fizzBuzzProducer-out-0:
           destination: numbers
@@ -21,6 +23,10 @@ spring:
           destination: fizz-buzz
         fizzBuzzConsumer-in-0:
           destination: fizz-buzz
+#        quotedUpperCaseInput:
+#          destination: caseInput
+        quotedUpperCaseOutput:
+          destination: caseOutput
       kafka:
         binder:
           brokers: localhost:9092
